@@ -4,9 +4,9 @@ public class Places {
 
     String name;
     String Des;
-
     String distance;
     int img_id;
+
     public String getName() {
         return name;
     }
@@ -38,6 +38,4 @@ public class Places {
     public void setImg_id(int img_id) {
         this.img_id = img_id;
     }
-
-
 }
