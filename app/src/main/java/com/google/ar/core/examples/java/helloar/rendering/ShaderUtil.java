@@ -12,12 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package renderingutils;
+package com.google.ar.core.examples.java.helloar.rendering;
 
 import android.content.Context;
 import android.opengl.GLES20;
 import android.util.Log;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

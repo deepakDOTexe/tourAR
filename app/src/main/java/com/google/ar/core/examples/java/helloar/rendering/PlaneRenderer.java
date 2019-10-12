@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package renderingutils;
+package com.google.ar.core.examples.java.helloar.rendering;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -26,8 +26,7 @@ import com.google.ar.core.Camera;
 import com.google.ar.core.Plane;
 import com.google.ar.core.Pose;
 import com.google.ar.core.TrackingState;
-import com.google.ar.sceneform.samples.hellosceneform.R;
-
+import com.google.ar.core.examples.java.helloar.R;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -40,7 +39,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -289,7 +287,7 @@ public class PlaneRenderer {
      *     {@link Camera#getProjectionMatrix(float[], int, float, float)}
      */
     public void drawPlanes(Collection<Plane> allPlanes, Pose cameraPose,
-                           float[] cameraPerspective) {
+            float[] cameraPerspective) {
         // Planes must be sorted by distance from camera so that we draw closer planes first, and
         // they occlude the farther planes.
         List<SortablePlane> sortedPlanes = new ArrayList<>();

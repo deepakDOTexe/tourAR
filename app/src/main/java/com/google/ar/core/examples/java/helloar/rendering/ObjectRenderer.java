@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package renderingutils;
+package com.google.ar.core.examples.java.helloar.rendering;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -20,9 +20,13 @@ import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
 import android.opengl.Matrix;
+import com.google.ar.core.examples.java.helloar.R;
+import uk.co.appoly.arcorelocation.rendering.Renderer;
 
-import com.google.ar.sceneform.samples.hellosceneform.R;
-
+import de.javagl.obj.Obj;
+import de.javagl.obj.ObjData;
+import de.javagl.obj.ObjReader;
+import de.javagl.obj.ObjUtils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -30,12 +34,6 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.nio.ShortBuffer;
-
-import de.javagl.obj.Obj;
-import de.javagl.obj.ObjData;
-import de.javagl.obj.ObjReader;
-import de.javagl.obj.ObjUtils;
-import uk.co.appoly.arcorelocation.rendering.Renderer;
 
 /**
  * Renders an object loaded from an OBJ file in OpenGL.
