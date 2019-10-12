@@ -34,6 +34,8 @@ import com.google.ar.sceneform.rendering.ViewRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
 
+import java.util.ArrayList;
+
 /**
  * This is an example activity that uses the Sceneform UX package to make common AR tasks easier.
  */
@@ -54,6 +56,64 @@ public class MainActivity extends AppCompatActivity {
     if (!checkIsSupportedDeviceOrFinish(this)) {
       return;
     }
+      ArrayList<Places> myplaces = new ArrayList<Places>();
+
+         Places a = new Places();
+         a.setName("VCC Mall");
+         a.setDes("The Vinayak City Centre serves as one of the major malls in Allahabad");
+         a.setDistance("9 km");
+         a.setImg_id(R.drawable.vcc);
+         myplaces.add(a);
+
+
+          Places b = new Places();
+          b.setName("Allahabad Fort");
+          b.setDes("large Fort dating to the 16th century");
+          b.setDistance("To be Set");
+          b.setImg_id(R.drawable.Akbar_Fort_Allahabad);
+          myplaces.add(b);
+
+          Places c = new Places();
+          c.setName("Swaraj Bhavan");
+          c.setDes("Museum in the Nehru family mansion");
+          c.setDistance("To be Set");
+          c.setImg_id(R.drawable.Swaraj_Bhavan);
+          myplaces.add(c);
+
+          Places d = new Places();
+          d.setName("All Saints Cathedral");
+          d.setDes("Cathedral, History and Architecture");
+          d.setDistance("To be Set");
+          d.setImg_id(R.drawable.all_saints);
+          myplaces.add(d);
+
+          Places e = new Places();
+          e.setName("Anand Bhavan");
+          e.setDes("Ornate 1930s house museum and artifacts");
+          e.setDistance("To be Set");
+          e.setImg_id(R.drawable.anand);
+          myplaces.add(e);
+
+          Places f = new Places();
+          f.setName("Khusro Bagh");
+          f.setDes("Large walled garden with mausoleums");
+          f.setDistance("To be Set");
+          f.setImg_id(R.drawable.khusro);
+          myplaces.add(f);
+
+          Places g = new Places();
+          g.setName("Allahabad Museum");
+          g.setDes("Extensive national museum opened in 1954");
+          g.setDistance("To be Set");
+          g.setImg_id(R.drawable.museum);
+          myplaces.add(g);
+
+          Places h = new Places();
+          h.setName("Triveni Sangam");
+          h.setDes("Sacred Hindu site at river confluence");
+          h.setDistance("To be Set");
+          h.setImg_id(R.drawable.sangam);
+          myplaces.add(h);
 
     setContentView(R.layout.activity_ux);
     arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
