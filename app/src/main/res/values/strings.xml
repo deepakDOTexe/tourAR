@@ -17,4 +17,8 @@
 <resources>
     <string name="app_name">Hello Sceneform</string>
     <string name="test">Test</string>
+    <string name="image_of_location" />
+    <string name="lorem_ipsum_is_simply_dummy_book">Lorem Ipsum is simply dummy book</string>
+    <string name="_15_km_away">15 km away</string>
+    <string name="name_of_the_place">Name of the Place</string>
 </resources>

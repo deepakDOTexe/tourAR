@@ -19,7 +19,7 @@
         app:siShape="@drawable/round_outline"
         app:siSquare="true"
         android:layout_margin="5dp"
-        android:contentDescription="Image of Location" />
+        android:contentDescription="@string/image_of_location" />
 
     <TextView
         android:id="@+id/orbitHeader"
@@ -29,7 +29,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@id/location_image"
-        android:text="Name of the Place"
+        android:text="@string/name_of_the_place"
         android:textColor="@android:color/white"
         android:textSize="16sp"
         android:textStyle="bold" />
@@ -41,7 +41,7 @@
         android:layout_below="@id/orbitHeader"
         android:layout_centerHorizontal="true"
         android:layout_toEndOf="@id/location_image"
-        android:text="15 km away"
+        android:text="@string/_15_km_away"
         android:textColor="@android:color/white"
         android:textSize="11sp" />
 
@@ -54,7 +54,7 @@
         android:layout_marginTop="10dp"
         android:layout_toEndOf="@id/location_image"
         android:maxLines="12"
-        android:text="Lorem Ipsum is simply dummy book"
+        android:text="@string/lorem_ipsum_is_simply_dummy_book"
         android:textColor="@android:color/white"
         android:textSize="12sp" />
 
