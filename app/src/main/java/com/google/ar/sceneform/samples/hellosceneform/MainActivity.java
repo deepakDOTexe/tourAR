@@ -30,8 +30,6 @@ import com.google.ar.core.Anchor;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
-import com.google.ar.sceneform.rendering.ModelRenderable;
-import com.google.ar.sceneform.rendering.Renderable;
 import com.google.ar.sceneform.rendering.ViewRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
@@ -39,8 +37,8 @@ import com.google.ar.sceneform.ux.TransformableNode;
 /**
  * This is an example activity that uses the Sceneform UX package to make common AR tasks easier.
  */
-public class HelloSceneformActivity extends AppCompatActivity {
-  private static final String TAG = HelloSceneformActivity.class.getSimpleName();
+public class MainActivity extends AppCompatActivity {
+  private static final String TAG = MainActivity.class.getSimpleName();
   private static final double MIN_OPENGL_VERSION = 3.0;
 
   private ArFragment arFragment;
