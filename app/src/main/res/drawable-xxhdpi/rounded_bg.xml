@@ -15,6 +15,9 @@
    limitations under the License.
 -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#E61976d2"/>
-    <corners android:radius="5dp"/>
+    <gradient
+        android:startColor="#a200e0"
+        android:endColor="#e98df5"
+        android:type="linear" />
+    <corners android:radius="10dp"/>
 </shape>
