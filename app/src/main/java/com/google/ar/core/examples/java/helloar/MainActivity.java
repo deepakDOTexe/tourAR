@@ -17,14 +17,12 @@
 package com.google.ar.core.examples.java.helloar;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -35,25 +33,21 @@ import com.google.ar.core.Anchor;
 import com.google.ar.core.Camera;
 import com.google.ar.core.Config;
 import com.google.ar.core.Frame;
-import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
 import com.google.ar.core.PointCloud;
 import com.google.ar.core.Session;
-import com.google.ar.core.Trackable;
 import com.google.ar.core.TrackingState;
 import com.google.ar.core.examples.java.helloar.helpers.TapHelper;
-import com.google.ar.core.examples.java.helloar.rendering.BackgroundRenderer;
-import com.google.ar.core.examples.java.helloar.rendering.ObjectRenderer;
-import com.google.ar.core.examples.java.helloar.rendering.ObjectRenderer.BlendMode;
-import com.google.ar.core.examples.java.helloar.rendering.PlaneRenderer;
-import com.google.ar.core.examples.java.helloar.rendering.PointCloudRenderer;
+import com.google.ar.core.examples.java.helloar.renderingutils.BackgroundRenderer;
+import com.google.ar.core.examples.java.helloar.renderingutils.PlaneRenderer;
+import com.google.ar.core.examples.java.helloar.renderingutils.PointCloudRenderer;
 import com.google.ar.core.exceptions.CameraNotAvailableException;
 import com.google.ar.core.exceptions.UnavailableApkTooOldException;
 import com.google.ar.core.exceptions.UnavailableArcoreNotInstalledException;
 import com.google.ar.core.exceptions.UnavailableSdkTooOldException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.ArrayBlockingQueue;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -61,7 +55,6 @@ import javax.microedition.khronos.opengles.GL10;
 import uk.co.appoly.arcorelocation.LocationScene;
 import uk.co.appoly.arcorelocation.LocationMarker;
 import uk.co.appoly.arcorelocation.rendering.AnnotationRenderer;
-import uk.co.appoly.arcorelocation.rendering.ImageRenderer;
 import uk.co.appoly.arcorelocation.utils.ARLocationPermissionHelper;
 import uk.co.appoly.arcorelocation.utils.Utils2D;
 
@@ -70,8 +63,8 @@ import uk.co.appoly.arcorelocation.utils.Utils2D;
  * ARCore API. The application will display any detected planes and will allow the user to tap on a
  * plane to place a 3d model of the Android robot.
  */
-public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.Renderer {
-    private static final String TAG = HelloArActivity.class.getSimpleName();
+public class MainActivity extends AppCompatActivity implements GLSurfaceView.Renderer {
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     // Rendering. The Renderers are created here, and initialized when the GL surface is created.
     private GLSurfaceView mSurfaceView;
@@ -149,22 +142,21 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
         // Set up our location scene
         locationScene = new LocationScene(this, this, mSession);
 
-//        LocationMarker swimmingPool =  new LocationMarker(
-//                81.771443,
-//                25.429201,
-//                new AnnotationRenderer("Swimming Pool")
-//        );
-//        swimmingPool.setOnTouchListener(new Runnable() {
-//            @Override
-//            public void run() {
-//                Toast.makeText(HelloArActivity.this,
-//                        "Touched Swimming Pool", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        swimmingPool.setTouchableSize(1000);
-//        locationScene.mLocationMarkers.add(
-//                swimmingPool
-//        );
+        LocationMarker library =  new LocationMarker(
+                81.771483,
+                25.431827,
+                new AnnotationRenderer("Library")
+        );
+        library.setOnTouchListener(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(MainActivity.this,
+                        "Touched Library", Toast.LENGTH_SHORT).show();
+            }
+        });
+        locationScene.mLocationMarkers.add(
+                library
+        );
 
         LocationMarker bh5 = new LocationMarker(
                         81.769823,
@@ -173,7 +165,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
         bh5.setOnTouchListener(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(HelloArActivity.this,
+                Toast.makeText(MainActivity.this,
                         "Touched BH5", Toast.LENGTH_SHORT).show();
             }
         });
@@ -189,7 +181,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
         rockOn.setOnTouchListener(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(HelloArActivity.this,
+                Toast.makeText(MainActivity.this,
                         "Touched Rock On", Toast.LENGTH_SHORT).show();
             }
         });
@@ -204,7 +196,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
 //        kv.setOnTouchListener(new Runnable() {
 //            @Override
 //            public void run() {
-//                Toast.makeText(HelloArActivity.this,
+//                Toast.makeText(MainActivity.this,
 //                        "Touched KV IIIT Jhalwa", Toast.LENGTH_SHORT).show();
 //            }
 //        });
@@ -212,19 +204,19 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
 //                kv
 //        );
 
-        LocationMarker SAC = new LocationMarker(
+        LocationMarker khusroBagh = new LocationMarker(
                 81.820863,
                 25.443003,
                 new AnnotationRenderer("Khusro Bagh"));
-        rockOn.setOnTouchListener(new Runnable() {
+        khusroBagh.setOnTouchListener(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(HelloArActivity.this,
+                Toast.makeText(MainActivity.this,
                         "Touched Khusro Bagh", Toast.LENGTH_SHORT).show();
             }
         });
         locationScene.mLocationMarkers.add(
-                SAC
+                khusroBagh
         );
 
         LocationMarker mainGround = new LocationMarker(
@@ -234,7 +226,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
         mainGround.setOnTouchListener(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(HelloArActivity.this,
+                Toast.makeText(MainActivity.this,
                         "Touched Main Ground", Toast.LENGTH_SHORT).show();
             }
         });
@@ -242,19 +234,19 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
                 mainGround
         );
 
-        LocationMarker library = new LocationMarker(
+        LocationMarker mnnit = new LocationMarker(
                 81.863857,
                 25.492494,
                 new AnnotationRenderer("MNNIT"));
-        library.setOnTouchListener(new Runnable() {
+        mnnit.setOnTouchListener(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(HelloArActivity.this,
+                Toast.makeText(MainActivity.this,
                         "Touched MNNIT", Toast.LENGTH_SHORT).show();
             }
         });
         locationScene.mLocationMarkers.add(
-                library
+                mnnit
         );
 
 //        LocationMarker bhComplex = new LocationMarker(
@@ -264,7 +256,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
 //        bhComplex.setOnTouchListener(new Runnable() {
 //            @Override
 //            public void run() {
-//                Toast.makeText(HelloArActivity.this,
+//                Toast.makeText(MainActivity.this,
 //                        "Touched BH Complex", Toast.LENGTH_SHORT).show();
 //            }
 //        });
@@ -279,7 +271,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
 //        vh1.setOnTouchListener(new Runnable() {
 //            @Override
 //            public void run() {
-//                Toast.makeText(HelloArActivity.this,
+//                Toast.makeText(MainActivity.this,
 //                        "Touched VH1", Toast.LENGTH_SHORT).show();
 //            }
 //        });
@@ -294,7 +286,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
 //        girlsHostel.setOnTouchListener(new Runnable() {
 //            @Override
 //            public void run() {
-//                Toast.makeText(HelloArActivity.this,
+//                Toast.makeText(MainActivity.this,
 //                        "Touched Girls Hostel", Toast.LENGTH_SHORT).show();
 //            }
 //        });
@@ -314,7 +306,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
                         } else {
                             locationScene.setBearingAdjustment( locationScene.getBearingAdjustment() + 1 );
                         }
-                        Toast.makeText(HelloArActivity.this.findViewById(android.R.id.content).getContext(),
+                        Toast.makeText(MainActivity.this.findViewById(android.R.id.content).getContext(),
                                 "Bearing adjustment: " + locationScene.getBearingAdjustment(), Toast.LENGTH_SHORT).show();
                         return true;
                     }
@@ -530,7 +522,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
 
     private void showSnackbarMessage(String message, boolean finishOnDismiss) {
         mMessageSnackbar = Snackbar.make(
-            HelloArActivity.this.findViewById(android.R.id.content),
+            MainActivity.this.findViewById(android.R.id.content),
             message, Snackbar.LENGTH_INDEFINITE);
         mMessageSnackbar.getView().setBackgroundColor(0xbf323232);
         if (finishOnDismiss) {
