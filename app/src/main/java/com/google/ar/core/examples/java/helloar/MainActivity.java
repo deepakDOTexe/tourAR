@@ -22,13 +22,18 @@ import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.ar.core.Anchor;
 import com.google.ar.core.Camera;
 import com.google.ar.core.Config;
@@ -45,6 +50,7 @@ import com.google.ar.core.exceptions.CameraNotAvailableException;
 import com.google.ar.core.exceptions.UnavailableApkTooOldException;
 import com.google.ar.core.exceptions.UnavailableArcoreNotInstalledException;
 import com.google.ar.core.exceptions.UnavailableSdkTooOldException;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -142,7 +148,9 @@ public class MainActivity extends AppCompatActivity implements GLSurfaceView.Ren
         // Set up our location scene
         locationScene = new LocationScene(this, this, mSession);
 
-        LocationMarker library =  new LocationMarker(
+//        String long = "81.771483";
+//        String lat = "25.431827";
+        LocationMarker library = new LocationMarker(
                 81.771483,
                 25.431827,
                 new AnnotationRenderer("Library")
@@ -150,8 +158,21 @@ public class MainActivity extends AppCompatActivity implements GLSurfaceView.Ren
         library.setOnTouchListener(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(MainActivity.this,
-                        "Touched Library", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder myDialog = new AlertDialog.Builder(MainActivity.this);
+                LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+                View myview = inflater.inflate(R.layout.custominput_field, null);
+                ImageView locationImage = myview.findViewById(R.id.location_image);
+                TextView locationName = myview.findViewById(R.id.location_name);
+                TextView locationDesc = myview.findViewById(R.id.location_description);
+                View view = myview.findViewById(R.id.testview);
+
+
+                locationImage.setImageResource(R.drawable.library);
+                locationName.setText("Library");
+                locationDesc.setText("Centralized library of IIIT Allahabad");
+                myDialog.setView(myview);
+                final AlertDialog dialog = myDialog.create();
+                dialog.show();
             }
         });
         locationScene.mLocationMarkers.add(
@@ -159,50 +180,56 @@ public class MainActivity extends AppCompatActivity implements GLSurfaceView.Ren
         );
 
         LocationMarker bh5 = new LocationMarker(
-                        81.769823,
-                        25.428823,
-                        new AnnotationRenderer("BH5"));
+                81.769823,
+                25.428823,
+                new AnnotationRenderer("BH5"));
         bh5.setOnTouchListener(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(MainActivity.this,
-                        "Touched BH5", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder myDialog = new AlertDialog.Builder(MainActivity.this);
+                LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+                View myview = inflater.inflate(R.layout.custominput_field, null);
+                ImageView locationImage = myview.findViewById(R.id.location_image);
+                TextView locationName = myview.findViewById(R.id.location_name);
+                TextView locationDesc = myview.findViewById(R.id.location_description);
+
+                locationImage.setImageResource(R.drawable.bh5);
+                locationName.setText("BH5");
+                locationDesc.setText("Boys Hostel 5 of IIIT Allahabad");
+                myDialog.setView(myview);
+                final AlertDialog dialog = myDialog.create();
+                dialog.show();
             }
         });
-        bh5.setTouchableSize(1000);
         locationScene.mLocationMarkers.add(
                 bh5
         );
 
         LocationMarker rockOn = new LocationMarker(
-                        81.766969,
-                        25.430508,
-                        new AnnotationRenderer("Rock On"));
+                81.766969,
+                25.430508,
+                new AnnotationRenderer("Rock On"));
         rockOn.setOnTouchListener(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(MainActivity.this,
-                        "Touched Rock On", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder myDialog = new AlertDialog.Builder(MainActivity.this);
+                LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+                View myview = inflater.inflate(R.layout.custominput_field, null);
+                ImageView locationImage = myview.findViewById(R.id.location_image);
+                TextView locationName = myview.findViewById(R.id.location_name);
+                TextView locationDesc = myview.findViewById(R.id.location_description);
+
+                locationImage.setImageResource(R.drawable.rockon);
+                locationName.setText("Rock On");
+                locationDesc.setText("The first restaurant every IIITA nibba ever goes to");
+                myDialog.setView(myview);
+                final AlertDialog dialog = myDialog.create();
+                dialog.show();
             }
         });
         locationScene.mLocationMarkers.add(
                 rockOn
         );
-
-//        LocationMarker kv = new LocationMarker(
-//                81.773725,
-//                25.426926,
-//                new AnnotationRenderer("KV IIIT Jhalwa"));
-//        kv.setOnTouchListener(new Runnable() {
-//            @Override
-//            public void run() {
-//                Toast.makeText(MainActivity.this,
-//                        "Touched KV IIIT Jhalwa", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        locationScene.mLocationMarkers.add(
-//                kv
-//        );
 
         LocationMarker khusroBagh = new LocationMarker(
                 81.820863,
@@ -211,8 +238,19 @@ public class MainActivity extends AppCompatActivity implements GLSurfaceView.Ren
         khusroBagh.setOnTouchListener(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(MainActivity.this,
-                        "Touched Khusro Bagh", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder myDialog = new AlertDialog.Builder(MainActivity.this);
+                LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+                View myview = inflater.inflate(R.layout.custominput_field, null);
+                ImageView locationImage = myview.findViewById(R.id.location_image);
+                TextView locationName = myview.findViewById(R.id.location_name);
+                TextView locationDesc = myview.findViewById(R.id.location_description);
+
+                locationImage.setImageResource(R.drawable.khusrobagh);
+                locationName.setText("Khusro Bagh");
+                locationDesc.setText("Large walled garden with mausoleums");
+                myDialog.setView(myview);
+                final AlertDialog dialog = myDialog.create();
+                dialog.show();
             }
         });
         locationScene.mLocationMarkers.add(
@@ -226,8 +264,19 @@ public class MainActivity extends AppCompatActivity implements GLSurfaceView.Ren
         mainGround.setOnTouchListener(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(MainActivity.this,
-                        "Touched Main Ground", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder myDialog = new AlertDialog.Builder(MainActivity.this);
+                LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+                View myview = inflater.inflate(R.layout.custominput_field, null);
+                ImageView locationImage = myview.findViewById(R.id.location_image);
+                TextView locationName = myview.findViewById(R.id.location_name);
+                TextView locationDesc = myview.findViewById(R.id.location_description);
+
+                locationImage.setImageResource(R.drawable.mainground);
+                locationName.setText("Main Ground");
+                locationDesc.setText("Main Ground of IIIT Allahabad for all field sports");
+                myDialog.setView(myview);
+                final AlertDialog dialog = myDialog.create();
+                dialog.show();
             }
         });
         locationScene.mLocationMarkers.add(
@@ -241,8 +290,19 @@ public class MainActivity extends AppCompatActivity implements GLSurfaceView.Ren
         mnnit.setOnTouchListener(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(MainActivity.this,
-                        "Touched MNNIT", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder myDialog = new AlertDialog.Builder(MainActivity.this);
+                LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+                View myview = inflater.inflate(R.layout.custominput_field, null);
+                ImageView locationImage = myview.findViewById(R.id.location_image);
+                TextView locationName = myview.findViewById(R.id.location_name);
+                TextView locationDesc = myview.findViewById(R.id.location_description);
+
+                locationImage.setImageResource(R.drawable.mnnit);
+                locationName.setText("MNNIT");
+                locationDesc.setText("Motilal Nehru National Institute of Technology");
+                myDialog.setView(myview);
+                final AlertDialog dialog = myDialog.create();
+                dialog.show();
             }
         });
         locationScene.mLocationMarkers.add(
@@ -323,7 +383,7 @@ public class MainActivity extends AppCompatActivity implements GLSurfaceView.Ren
         // ARCore requires camera permissions to operate. If we did not yet obtain runtime
         // permission on Android M and above, now is a good time to ask the user for it.
         if (ARLocationPermissionHelper.hasPermission(this)) {
-            if(locationScene != null)
+            if (locationScene != null)
                 locationScene.resume();
             if (mSession != null) {
                 showLoadingMessage();
@@ -344,7 +404,7 @@ public class MainActivity extends AppCompatActivity implements GLSurfaceView.Ren
     @Override
     public void onPause() {
         super.onPause();
-        if(locationScene != null)
+        if (locationScene != null)
             locationScene.pause();
         // Note that the order matters - GLSurfaceView is paused first so that it does not try
         // to query the session. If Session is paused before GLSurfaceView, GLSurfaceView may
@@ -360,7 +420,7 @@ public class MainActivity extends AppCompatActivity implements GLSurfaceView.Ren
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] results) {
         if (!ARLocationPermissionHelper.hasPermission(this)) {
             Toast.makeText(this,
-                "Camera permission is needed to run this application", Toast.LENGTH_LONG).show();
+                    "Camera permission is needed to run this application", Toast.LENGTH_LONG).show();
             if (!ARLocationPermissionHelper.shouldShowRequestPermissionRationale(this)) {
                 // Permission denied with checking "Do not ask again".
                 ARLocationPermissionHelper.launchPermissionSettings(this);
@@ -375,12 +435,12 @@ public class MainActivity extends AppCompatActivity implements GLSurfaceView.Ren
         if (hasFocus) {
             // Standard Android full-screen functionality.
             getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
     }
@@ -498,7 +558,7 @@ public class MainActivity extends AppCompatActivity implements GLSurfaceView.Ren
 
             // Visualize planes.
             mPlaneRenderer.drawPlanes(
-                mSession.getAllTrackables(Plane.class), camera.getDisplayOrientedPose(), projmtx);
+                    mSession.getAllTrackables(Plane.class), camera.getDisplayOrientedPose(), projmtx);
 
             // Visualize anchors created by touch.
             float scaleFactor = 1.0f;
@@ -513,7 +573,6 @@ public class MainActivity extends AppCompatActivity implements GLSurfaceView.Ren
             }
 
 
-
         } catch (Throwable t) {
             // Avoid crashing the application due to unhandled exceptions.
             Log.e(TAG, "Exception on the OpenGL thread", t);
@@ -522,26 +581,26 @@ public class MainActivity extends AppCompatActivity implements GLSurfaceView.Ren
 
     private void showSnackbarMessage(String message, boolean finishOnDismiss) {
         mMessageSnackbar = Snackbar.make(
-            MainActivity.this.findViewById(android.R.id.content),
-            message, Snackbar.LENGTH_INDEFINITE);
+                MainActivity.this.findViewById(android.R.id.content),
+                message, Snackbar.LENGTH_INDEFINITE);
         mMessageSnackbar.getView().setBackgroundColor(0xbf323232);
         if (finishOnDismiss) {
             mMessageSnackbar.setAction(
-                "Dismiss",
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mMessageSnackbar.dismiss();
-                    }
-                });
+                    "Dismiss",
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mMessageSnackbar.dismiss();
+                        }
+                    });
             mMessageSnackbar.addCallback(
-                new BaseTransientBottomBar.BaseCallback<Snackbar>() {
-                    @Override
-                    public void onDismissed(Snackbar transientBottomBar, int event) {
-                        super.onDismissed(transientBottomBar, event);
-                        finish();
-                    }
-                });
+                    new BaseTransientBottomBar.BaseCallback<Snackbar>() {
+                        @Override
+                        public void onDismissed(Snackbar transientBottomBar, int event) {
+                            super.onDismissed(transientBottomBar, event);
+                            finish();
+                        }
+                    });
         }
         mMessageSnackbar.show();
     }
@@ -566,4 +625,6 @@ public class MainActivity extends AppCompatActivity implements GLSurfaceView.Ren
             }
         });
     }
+
+//    public void openMap
 }
